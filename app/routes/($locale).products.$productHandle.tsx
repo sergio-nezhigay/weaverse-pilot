@@ -18,6 +18,7 @@ import { seoPayload } from "~/lib/seo.server";
 import type { Storefront } from "~/lib/type";
 import { WeaverseContent } from "~/weaverse";
 import { getJudgemeReviews } from "~/lib/judgeme";
+import { GoogleTagManager } from "~/components/GoogleTagManager";
 
 export const headers = routeHeaders;
 
@@ -165,6 +166,7 @@ export default function Product() {
           }}
         />
       )}
+      <GoogleTagManager />
     </>
   );
 }
