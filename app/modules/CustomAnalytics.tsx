@@ -13,6 +13,14 @@ export function CustomAnalytics() {
       console.log("CustomAnalytics - isTrackingAllowed", isTrackingAllowed);
     }, 1000);
     // Standard events
+    subscribe("page_viewed", (data) => {
+      console.log("CustomAnalytics - Page viewed:", data);
+      window.dataLayer.push({
+        event: "shopify_page_view",
+        page: data.url,
+      });
+    });
+
     subscribe("product_viewed", (data) => {
       console.log("CustomAnalytics - Product viewed:", data);
       if (data.products && data.products.length > 0) {
@@ -31,31 +39,6 @@ export function CustomAnalytics() {
                 // Add more product details as needed
               },
             ],
-          },
-        });
-      }
-    });
-
-    subscribe("product_viewed", (data) => {
-      console.log("CustomAnalytics - Product viewed:", data);
-      if (data.products && data.products.length > 0) {
-        const product = data.products[0];
-        window.dataLayer.push({
-          event: "product_viewed",
-          ecommerce: {
-            detail: {
-              products: [
-                {
-                  id: product.id,
-                  name: product.title,
-                  price: product.price,
-                  quantity: product.quantity,
-                  variantId: product.variantId,
-                  variantTitle: product.variantTitle,
-                  vendor: product.vendor,
-                },
-              ],
-            },
           },
         });
       }
