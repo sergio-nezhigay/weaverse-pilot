@@ -15,9 +15,38 @@ export function CustomAnalytics() {
     // Standard events
     subscribe("page_viewed", (data) => {
       console.log("CustomAnalytics - Page viewed:", data);
+      window.dataLayer.push({
+        event: "page_viewed",
+        page: data.url,
+      });
     });
+    //subscribe("product_viewed", (data) => {
+    //  console.log("CustomAnalytics - Product viewed:", data);
+    //});
     subscribe("product_viewed", (data) => {
       console.log("CustomAnalytics - Product viewed:", data);
+      if (data.products && data.products.length > 0) {
+        const product = data.products[0];
+        window.dataLayer.push({
+          event: "product_viewed",
+          ecommerce: {
+            detail: {
+              products: [
+                {
+                  id: product.id,
+                  name: product.title,
+                  price: product.price,
+                  quantity: product.quantity,
+                  variantId: product.variantId,
+                  variantTitle: product.variantTitle,
+                  vendor: product.vendor,
+                  // Add more product details as needed
+                },
+              ],
+            },
+          },
+        });
+      }
     });
     subscribe("collection_viewed", (data) => {
       console.log("CustomAnalytics - Collection viewed:", data);
