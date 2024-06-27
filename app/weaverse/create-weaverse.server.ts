@@ -39,7 +39,7 @@ export function getWeaverseCsp(request: Request, context: AppLoadContext) {
       "*.alicdn.com",
       ...weaverseHosts,
     ],
-    connectSrc: ["vimeo.com", "*.google-analytics.com", ...weaverseHosts],
+    connectSrc: ["vimeo.com", "*.google-analytics.com", "analytics.google.com", ...weaverseHosts],
     styleSrc: weaverseHosts,
   };
   if (isDesignMode) {
