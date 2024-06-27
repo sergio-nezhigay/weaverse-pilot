@@ -38,7 +38,6 @@ export let loader = async ({ weaverse }: ComponentLoaderArgs<{}, Env>) => {
       },
     })
     .catch((err) => {
-      console.log("🚀 ~ loader ~ err", err);
       return { data: { reviews: [], cursor: "" }, message: "", status: 0 };
     });
   let { data } = res;
