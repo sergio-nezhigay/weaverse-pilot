@@ -32,6 +32,7 @@ export function getWeaverseCsp(request: Request, context: AppLoadContext) {
       "*.vimeo.com",
       "*.google.com",
       "*.google-analytics.com",
+      "analytics.google.com",
       "*.googletagmanager.com",
       "cdn.alireviews.io",
       "cdn.jsdelivr.net",
